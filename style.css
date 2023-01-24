@@ -6,28 +6,30 @@ body {
 .zone {
     /* padding:30px 50px;
     margin:40px 60px; */
-    cursor: pointer;
-    /* display:inline-block; */
+    /* cursor: pointer; */
+    display:inline-block;
     color: #FFF;
-    font-size: 2em;
+    font-size: 1.2em;
     border-radius: 4px;
     border: 1px solid #bbb;
     transition: all 0.3s linear;
+    /* overflow: hidden; */
+    word-wrap: break-word;
 }
 
-.zone:hover {
+/* .zone:hover {
     -webkit-box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px, inset rgba(0, 0, 0, 0.15) 0px -10px 20px;
     -moz-box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px, inset rgba(0, 0, 0, 0.15) 0px -10px 20px;
     -o-box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px, inset rgba(0, 0, 0, 0.15) 0px -10px 20px;
     box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px, inset rgba(0, 0, 0, 0.15) 0px -10px 20px;
-}
+} */
 
-.box:hover {
+/* .box:hover {
     -webkit-transform: rotate(-7deg);
     -moz-transform: rotate(-7deg);
     -o-transform: rotate(-7deg);
     transform: rotate(-7deg);
-}
+} */
 /******* NAV *******/
 .sticky {
     position: fixed;
@@ -79,8 +81,8 @@ a {
 
 .grid-wrapper {
     display: grid;
-    gap: 20px;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    /* gap: 20px; */
+    grid-template-columns: repeat(25% 60%, minmax(350px, 1fr));
 }
 
 .box > img {
@@ -89,8 +91,8 @@ a {
 
 .box {
     background-color: #444;
-    padding: 130px;
-    margin: 20px;
+    padding: 25px;
+    margin: 10px;
 }
 
 footer {
@@ -299,6 +301,58 @@ footer {
   .rad-input:checked~.rad-text {
     color: hsl(0, 0%, 40%);
   }
+
+  code {
+    font-family: MyFancyCustomFont, monospace;
+    font-size: inherit;
+  }
   
 
-  
+  /* Code in text */
+  p > code,
+  li > code,
+  dd > code,
+  td > code,
+  pre > code {
+    /* background: #0f0f0f; */
+    
+    box-decoration-break: clone;
+    padding: .1rem .3rem .2rem;
+    border-radius: .2rem;
+    display:inline-block;
+    width: 80%;
+    word-wrap: break-word;
+  }
+
+.id {
+  word-wrap: break-word;
+  /* overflow:hidden; */
+}
+
+.copyUrl{
+  border: none;
+  display: inline-block;
+  padding: 8px 16px;
+  margin: 0 auto;
+  vertical-align: middle;
+  overflow: hidden;
+  text-decoration: none;
+  /* color: inherit; */
+  /* background-color: inherit; */
+  text-align: center;
+  cursor: pointer;
+  white-space: nowrap;
+  /* box-shadow: 0 9px #999; */
+}
+
+.copyUrl:hover {background-color: #7abcff  }
+
+.copyUrl:active {
+  background-color: #4096ee   ;
+  /* box-shadow: 0 5px #666; */
+  transform: translateY(4px);
+}
+
+p {
+  margin: 10px 0;
+}
