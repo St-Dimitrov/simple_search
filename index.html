@@ -2,9 +2,10 @@
 <html>
 
 <head>
-  <title>Layout Master</title>
+  <title>Box Migration lookup website</title>
   <link rel="stylesheet" type="text/css" href="./style.css">
   <script src="main.js" defer></script>
+  <link href="https://wwwsitecorecom.azureedge.net/-/media/sitecoresite/images/global/logo/favicon.ico?md=20220411T160124Z" rel="shortcut icon">
 </head>
 
 <body>
@@ -19,9 +20,14 @@
   <div class="container zone">
 
     <div>
-
       <label class="rad-label">
         <input type="radio" class="rad-input" name="rad">
+        <div class="rad-design"></div>
+        <div class="rad-text">by URL</div>
+      </label>
+
+      <label class="rad-label">
+        <input type="radio" class="rad-input" name="rad" value="byID">
         <div class="rad-design"></div>
         <div class="rad-text">byID</div>
       </label>
@@ -42,13 +48,13 @@
 
 
     <form class="example">
-      <input type="text" placeholder="Search.." name="search">
+      <input id="searchInput" type="text" placeholder="Search.." name="search">
       <button id="fetch" type="button"><a class="fa fa-search"></a></button>
     </form>
   </div>
-  <div class="zone blue grid-wrapper">
-    <div class="box zone"><p class="id"></p></div>
-    <div class="box zone"><p id="json"></p></div>
+  <div class="zone red grid-wrapper">
+    <div class="box zone displayNone"><p class="id"></p></div>
+    <div class="box zone displayNone"><p id="json"></p></div>
     <!-- <div class="box zone"><img src="./img/files_2.png" alt=""></div>
     <div class="box zone"><img src="./img/server_2_2.png" alt=""></div>
     <div class="box zone"><img src="./img/monitor_settings_2.png" alt=""></div>
