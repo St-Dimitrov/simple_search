@@ -223,6 +223,11 @@ footer {
   form.example button:hover {
     background: #e91c1c;
   }
+
+  form.example button:active {
+    /* box-shadow: 0 5px #666; */
+    transform: translateY(4px);
+  }
   
   /* Clear floats */
   form.example::after {
@@ -326,6 +331,7 @@ footer {
 
 .id {
   word-wrap: break-word;
+  line-height: 150%;
   /* overflow:hidden; */
 }
 
@@ -350,7 +356,7 @@ footer {
 .copyUrl:active {
   background-color: #4096ee   ;
   /* box-shadow: 0 5px #666; */
-  transform: translateY(4px);
+  transform: translateY(2px);
 }
 
 p {

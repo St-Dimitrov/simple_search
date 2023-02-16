@@ -22,15 +22,15 @@ function troubleshoot(){
 function visualization(){
     locationJson.innerHTML = 
     "<em>Id: </em>" + jsonResponse[element].id +
-    "<br>Name: " + jsonResponse[element].name +
-    "<br>Type: " + jsonResponse[element].type +
-    "<br>Access: " + jsonResponse[element].shared_link.access +
-    "<br>Permission: " + jsonResponse[element].shared_link.permission +
-    "<br>Collaborators: " + JSON.stringify(jsonResponse[element].collaborators) +
-    // "<br>Children: " + JSON.stringify(jsonResponse[element].children) +
-    '<br><button class="copyUrl" onclick="copyUrl()">Copy URL</button>' + jsonResponse[element].shared_link.url +
-    '<br>Sharepoint path: '+ jsonResponse[element].sharepoint.FullPath
-    document.getElementById("json").textContent = "JSON in the console - F12: " + JSON.stringify(jsonResponse[element], undefined, 2);
+    "<br><em>Name: </em>" + jsonResponse[element].name +
+    "<br><em>Type: </em>" + jsonResponse[element].type +
+    "<br><em>Access: </em>" + jsonResponse[element].shared_link.access +
+    "<br><em>Permission: </em>" + jsonResponse[element].shared_link.permission +
+    "<br><em>Collaborators: </em>" + JSON.stringify(jsonResponse[element].collaborators) +
+    // "<br><em>Children: </em>" + JSON.stringify(jsonResponse[element].children) +
+    '<br><em><button class="copyUrl" onclick="copyUrl()">Copy URL</button></em>' + jsonResponse[element].shared_link.url +
+    '<br><em>Sharepoint path: </em>'+ jsonResponse[element].sharepoint.FullPath
+    document.getElementById("json").textContent = "JSON in the console - F12:" + JSON.stringify(jsonResponse[element], undefined, 2);
 }
 
 function visualizationAndTroubleshoot(){
@@ -96,8 +96,8 @@ let button = document.querySelector("#fetch");
 button.addEventListener("click", function(){
     let url = ""
     let inputValue = document.querySelector("body > div.container.zone > form > input[type=text]").value
-    if(selected === "by URL"){
-        
+    
+    if(selected === "by URL" && inputValue !== ""){
         if(inputValue.includes('sitecore.box.com/s/')){
             console.log("You are searching by SharedLink URL")
             url = "http://51.142.249.3/" + "bySharedLinkID/" + document.querySelector("body > div.container.zone > form > input[type=text]").value.split("/").slice(-1)[0] + "?auth_key=b0xm1gr@710n" //HARDCODING AUTH IS A BAD PRACTICE!!!
