@@ -5,6 +5,12 @@ function clearInput(){
 function copyUrl(){
     navigator.clipboard.writeText(jsonResponse[element].shared_link.url)
 }
+function copyUrl2(){
+    navigator.clipboard.writeText(jsonResponse[element].sharepoint.FullPath)
+}
+function copyUrl3(){
+    navigator.clipboard.writeText("https://sitecore1.sharepoint.com/_layouts/DocIdRedir.aspx?ID=" + jsonResponse[element].sharepoint.docId)
+}
 
 function troubleshoot(){
     if(!jsonResponse[element].success){
@@ -20,16 +26,66 @@ function troubleshoot(){
 }
 
 function visualization(){
-    locationJson.innerHTML = 
-    "<em>Id: </em>" + jsonResponse[element].id +
-    "<br><em>Name: </em>" + jsonResponse[element].name +
-    "<br><em>Type: </em>" + jsonResponse[element].type +
-    "<br><em>Access: </em>" + jsonResponse[element].shared_link.access +
-    "<br><em>Permission: </em>" + jsonResponse[element].shared_link.permission +
-    "<br><em>Collaborators: </em>" + JSON.stringify(jsonResponse[element].collaborators) +
+        locationJson.innerHTML = ''
+        if(jsonResponse[element].id !== null){
+            locationJson.innerHTML += 
+            "<em>Id: </em>" + jsonResponse[element].id  
+        } 
+        if(jsonResponse[element].name !== null){
+            locationJson.innerHTML += 
+            "<br><em>Name: </em>" + jsonResponse[element].name
+        }
+        if(jsonResponse[element].path !== null){
+            locationJson.innerHTML += 
+            '<br><em>Path: </em>' + jsonResponse[element].path
+        }        
+        // if(jsonResponse[element].shared_link !== null){
+        //     locationJson.innerHTML += 
+        //     // "<br><em>Access: </em>" + jsonResponse[element].shared_link.access +
+        //     // "<br><em>Permission: </em>" + jsonResponse[element].shared_link.permission +
+        //     // '<br><em>Path: <button class="copyUrl" onclick="copyUrl()">Copy URL</button></em> ' + jsonResponse[element].shared_link.url
+        // }
+        if(jsonResponse[element].type !== null){
+            locationJson.innerHTML += 
+            '<br><em>Type: </em>' + jsonResponse[element].type
+        } 
+        if(jsonResponse[element].sharepoint !== null){
+            locationJson.innerHTML += 
+            '<br><em>Sharepoint path: <button class="copyUrl" onclick="copyUrl2()">Copy URL</button></em> '+ jsonResponse[element].sharepoint.FullPath
+            if(jsonResponse[element].sharepoint.docId !== ""){
+                locationJson.innerHTML += '<br><em>Doc ID: <button class="copyUrl" onclick="copyUrl3()">Copy URL</button> https://sitecore1.sharepoint.com/_layouts/DocIdRedir.aspx?ID=</em>'+ jsonResponse[element].sharepoint.docId
+            }
+        }
+        // if(jsonResponse[element].sharepoint !== null){
+        //     locationJson.innerHTML += 
+        //     '<br><em>Sharepoint path: </em>'+ jsonResponse[element].sharepoint.FullPath +
+        //     '<br><em>Doc ID: </em>'+ jsonResponse[element].sharepoint.docId
+        // }
+        if(jsonResponse[element].shared_link !== null){
+            locationJson.innerHTML += 
+            '<br><em>Shared Link: <button class="copyUrl" onclick="copyUrl()">Copy URL</button></em> ' + jsonResponse[element].shared_link.url +
+            "<br><em>Access: </em>" + jsonResponse[element].shared_link.access +
+            "<br><em>Permission: </em>" + jsonResponse[element].shared_link.permission
+        }
+        if(JSON.stringify(jsonResponse[element].collaborators) !== null){
+            locationJson.innerHTML += 
+            "<br><em>Collaborators: </em>" + JSON.stringify(jsonResponse[element].collaborators)
+        }
+        if(JSON.stringify(jsonResponse[element].children) !== null){
+            locationJson.innerHTML += 
+            "<br><em>Children: </em>" + JSON.stringify(jsonResponse[element].children)
+        }
+
+    // locationJson.innerHTML = 
+    // "<em>Id: </em>" + jsonResponse[element].id +
+    // "<br><em>Name: </em>" + jsonResponse[element].name +
+    // "<br><em>Type: </em>" + jsonResponse[element].type +
+    // "<br><em>Access: </em>" + jsonResponse[element].shared_link.access +
+    // "<br><em>Permission: </em>" + jsonResponse[element].shared_link.permission +
+    // "<br><em>Collaborators: </em>" + JSON.stringify(jsonResponse[element].collaborators) +
     // "<br><em>Children: </em>" + JSON.stringify(jsonResponse[element].children) +
-    '<br><em><button class="copyUrl" onclick="copyUrl()">Copy URL</button></em>' + jsonResponse[element].shared_link.url +
-    '<br><em>Sharepoint path: </em>'+ jsonResponse[element].sharepoint.FullPath
+    // '<br><em><button class="copyUrl" onclick="copyUrl()">Copy URL</button></em>' + jsonResponse[element].shared_link.url +
+    // '<br><em>Sharepoint path: </em>'+ jsonResponse[element].sharepoint.FullPath
     document.getElementById("json").textContent = "JSON in the console - F12:" + JSON.stringify(jsonResponse[element], undefined, 2);
 }
 
@@ -55,7 +111,7 @@ function radioButtons(){
         // console.log(RadioButton)
         RadioButton.addEventListener("click", function(){
             selected = RadioButton.children[2].innerHTML
-            clearInput()
+            // clearInput()
             // console.log("you have selected: ", selected)
         })
     }
@@ -125,7 +181,7 @@ button.addEventListener("click", function(){
 
     .then(setTimeout(visualizationAndTroubleshoot, 999))
     // .then(setTimeout(visualization, 1000))
-    .then(setTimeout(clearInput, 1001))
+    // .then(setTimeout(clearInput, 1001))
     .then(setTimeout(display, 1002))
 });
 
